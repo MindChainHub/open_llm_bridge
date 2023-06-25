@@ -25,6 +25,8 @@ uvicorn main:app --host 127.0.0.1 --port 8000;
 ### 配置
 
 重命名 `.env.example` 为 `.env`
+参考 [Config.md](./doc/CONFIG.md)
+
 
 
 ## 项目进展和未来计划

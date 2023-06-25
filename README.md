@@ -29,6 +29,7 @@ uvicorn main:app --host 127.0.0.1 --port 8000;
 ### Config
 
 Rename `.env.example` to `.env`
+See [Config.md](./doc/CONFIG.md)
 
 
 ## Project Progress and Future Roadmap
