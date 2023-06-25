@@ -1,0 +1,5 @@
+fastapi==0.98.0
+httpx==0.24.1
+uvicorn==0.22.0
+tiktoken==0.4.0
+asyncio==3.4.3
