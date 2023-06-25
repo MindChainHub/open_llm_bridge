@@ -15,6 +15,7 @@ Python 3.10, FastAPI framework, and runs on Uvicorn.
 
 ## Getting Started
 
+### Install
 ```shell
 # Clone the repository
 git clone https://github.com/your-username/open-llm-bridge.git;
@@ -25,6 +26,10 @@ pip install -r requirements.txt;
 # Start the server using Uvicorn:
 uvicorn main:app --host 127.0.0.1 --port 8000;
 ```
+### Config
+
+Rename `.env.example` to `.env`
+
 
 ## Project Progress and Future Roadmap
 

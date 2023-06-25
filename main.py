@@ -25,8 +25,8 @@ async def proxy_openai_api(request: Request):
     body = await request.json() if request.method in {'POST', 'PUT'} else None
     ##
     req_cvt = bridge.ReqConverter(
-        config_vars=bridge.CVT_CONFIG_VARS,
-        config=bridge.CVT_CONFIG,
+        config_vars=bridge.BRG_CONFIG_VARS,
+        config=bridge.BRG_CONFIG,
         # Replace to your sk convert logic
         on_get_key=lambda skp, out_chl: skp,
     )

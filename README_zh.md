@@ -11,6 +11,7 @@ API。该项目使用Python 3.10、FastAPI框架构建，并在Uvicorn上运行�
 
 ## 入门指南
 
+### 安装
 ```shell
 # 克隆存储库
 git clone https://github.com/your-username/open-llm-bridge.git;
@@ -21,6 +22,10 @@ pip install -r requirements.txt;
 # 使用Uvicorn启动服务器：
 uvicorn main:app --host 127.0.0.1 --port 8000;
 ```
+### 配置
+
+重命名 `.env.example` 为 `.env`
+
 
 ## 项目进展和未来计划
 

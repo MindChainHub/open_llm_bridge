@@ -5,19 +5,22 @@ import json
 import os
 from datetime import datetime
 from typing import Callable
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # 没有的键值对代表model相同(注意,映射关系是单向,不可反向调用)
-CVT_MODEL_NAME_OPENAI_AZURE = {
+BRG_MODEL_NAME_OPENAI_AZURE = {
     "gpt-3.5-turbo": "gpt-35-turbo",
     # "text-embedding-ada-002": "text-embedding-ada-002",
 }
-CVT_MODEL_NAME_AZURE_OPENAI = {
+BRG_MODEL_NAME_AZURE_OPENAI = {
     "gpt-35-turbo": "gpt-3.5-turbo",
     # "text-embedding-ada-003": "text-embedding-ada-002",
 }
 
-CVT_CONFIG_VARS = json.loads(os.environ.get(
-    'CVT_CONFIG_VARS')) if os.environ.get('CVT_CONFIG_VARS') else {
+BRG_CONFIG_VARS = json.loads(os.environ.get(
+    'BRG_CONFIG_VARS')) if os.environ.get('BRG_CONFIG_VARS') else {
     "openai_base": "https://api.openai.com",
     "openai_ctx": "/v1",
     "azure_base": "https://swarm.openai.azure.com",
@@ -28,8 +31,8 @@ CVT_CONFIG_VARS = json.loads(os.environ.get(
     "az_deploy_emb": "/text-embedding-ada-002",
 }
 
-CVT_CONFIG = json.loads(os.environ.get(
-    'CVT_CONFIG')) if os.environ.get('CVT_CONFIG') else {
+BRG_CONFIG = json.loads(os.environ.get(
+    'BRG_CONFIG')) if os.environ.get('BRG_CONFIG') else {
     # _match_config: <...配置>
     "/chat/completions": {
         # channel 路由: <IN_Channel, OUT_Channel> (配置不同的 IN_和OUT_ 可能会因为返回值格式不同而导致错误)
@@ -155,7 +158,7 @@ class ReqConverter:
         self._out_auth = self.on_get_key(self._in_auth, self._out_channel)
 
         if self._in_channel != self._out_channel:
-            self._out_model = CVT_MODEL_NAME_OPENAI_AZURE.get(self._in_model, self._in_model)
+            self._out_model = BRG_MODEL_NAME_OPENAI_AZURE.get(self._in_model, self._in_model)
             self._out_headers = self._in_headers
             self._out_headers['api-key'] = self._out_auth
         else:
@@ -176,7 +179,7 @@ class ReqConverter:
 
     def _set_out_openai(self, path: str):
         if self._in_channel != self._out_channel:
-            self._out_model = CVT_MODEL_NAME_AZURE_OPENAI.get(self._in_model, self._in_model)
+            self._out_model = BRG_MODEL_NAME_AZURE_OPENAI.get(self._in_model, self._in_model)
             self._out_headers = self._in_headers
             self._out_headers['authorization'] = f'Bearer {self._out_auth}'
         else:
