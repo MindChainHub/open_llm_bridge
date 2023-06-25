@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+#    environment:
+#      HOST: "0.0.0.0"
+#      PORT: "9000"
+    ports:
+      - "9000:9000"
