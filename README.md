@@ -1,6 +1,7 @@
 # Open LLM Bridge
 
-[**简体中文**](./README_zh.md)
+[**🇨🇳简体中文**](./README_zh.md)
+> 连接不同LLM的API(如通过OpenAI的格式访问Azure), 支持Stream和token计费
 
 Open LLM Bridge is an open-source project that provides a unified interface for accessing various Language Model (LLM)
 APIs. It allows users to configure and utilize different LLM APIs based on their preferences. The project is built using
