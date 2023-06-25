@@ -30,8 +30,8 @@ async def proxy_openai_api(request: Request):
         # Replace to your sk convert logic
         on_get_key=lambda skp, out_chl: skp,
     )
-    # 修改配置 IN_ openai -> OUT_ azure
-    req_cvt.update_all_channel_route({"openai": "azure"})
+    # # 修改配置 IN_ openai -> OUT_ azure
+    # req_cvt.update_all_channel_route({"openai": "azure"})
 
     req_url, req_headers, request_body = req_cvt.build(
         path=path,
