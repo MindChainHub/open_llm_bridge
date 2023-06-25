@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.background import BackgroundTask
 from utils import OverrideStreamResponse
 import bridge
+import llm_log
 
 # FastAPI app
 app = FastAPI()
@@ -40,10 +41,16 @@ async def proxy_openai_api(request: Request):
         body=body,
     )
 
+    log = llm_log.LLMLog()
+    log.model = req_cvt.get_model()
+    log.skp = req_cvt.get_skp()
+    log.match_path = req_cvt.get_match_path()
+
     # =====
     client = httpx.AsyncClient()
 
     async def stream_api_response():
+        nonlocal log
         try:
             st = client.stream(
                 headers=req_headers,
@@ -62,6 +69,13 @@ async def proxy_openai_api(request: Request):
                     yield chunk
                     content.extend(chunk)
 
+                # gather log data
+                log.req = request_body
+                log.req_url = req_url
+                log.req_header = req_headers
+                log.status_code = res.status_code
+                log.rsp_content = content.decode('utf-8')
+
         except httpx.RequestError as exc:
             raise HTTPException(
                 status_code=500,
@@ -70,8 +84,8 @@ async def proxy_openai_api(request: Request):
             )
 
     async def update_log():
-        # if you need log after request
-        pass
+        nonlocal log
+        log.log()
 
     response = OverrideStreamResponse(stream_api_response(), background=BackgroundTask(update_log))
     return response
