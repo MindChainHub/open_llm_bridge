@@ -43,9 +43,9 @@ See [Config.md](./doc/CONFIG.md)
 | Azure -> OpenAI  |   ✔️    |   ✔️    |    ✔️    |
 | Azure -> Azure   |   ✔️    |   ✔️    |    ✔️    |
 
-### Future Plans:
+### Future Plans
 
-- Support for additional LLMs
+- Support for GPT4All
 - Enhance billing functionality
 - Support for SK conversion
 

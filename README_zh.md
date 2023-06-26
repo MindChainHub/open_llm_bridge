@@ -42,9 +42,7 @@ uvicorn main:app --host 127.0.0.1 --port 8000;
 
 ### 未来计划：
 
-    - 支持其他LLM
-    - 完善计费功能
-    - 支持sk转换
+参考 [Future Plans](README.md#future-plans)
 
 ### 贡献
 
